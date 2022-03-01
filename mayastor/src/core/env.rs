@@ -371,6 +371,7 @@ impl MayastorEnvironment {
     pub fn new(args: MayastorCliArgs) -> Self {
         Self {
             grpc_endpoint: Some(grpc::endpoint(args.grpc_endpoint)),
+            registration_endpoint: args.registration_endpoint,
             persistent_store_endpoint: args.persistent_store_endpoint,
             node_name: args.node_name.unwrap_or_else(|| "mayastor-node".into()),
             mayastor_config: args.mayastor_config,

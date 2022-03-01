@@ -90,6 +90,7 @@ impl Registration {
         }
     }
 
+    /// Get the global registration instance
     pub(super) fn get() -> Option<&'static Registration> {
         GRPC_REGISTRATION.get()
     }
@@ -115,7 +116,7 @@ impl Registration {
         }
     }
 
-    /// Deregister a new node over rpc
+    /// Deregister a node over rpc
     pub async fn deregister(&mut self) -> Result<(), tonic::Status> {
         match self
             .client
@@ -150,16 +151,19 @@ impl Registration {
     pub async fn run_loop(&mut self) {
         let mut show_error: bool = true;
         info!(
-            "Registering '{:?}' and grpc server {} ...",
+            "Registering '{:?}' with grpc server {} ...",
             self.config.node, self.config.grpc_endpoint
         );
         loop {
             match self.register().await {
                 Ok(_) => {
                     if !show_error {
-                        info!("Re-registered '{:?}' and grpc server {} ...", self.config.node, self.config.grpc_endpoint);
+                        info!(
+                            "Re-registered '{:?}' with grpc server {} ...",
+                            self.config.node, self.config.grpc_endpoint
+                        );
                     }
-                    show_error = true,
+                    show_error = true;
                 }
                 Err(err) => {
                     if show_error {
