@@ -119,14 +119,14 @@ cd $SCRIPTDIR/..
 
 if [ -z "$IMAGES" ]; then
   if [ -z "$DEBUG" ]; then
-    IMAGES="mayastor mayastor-client"
+    IMAGES="bolt bolt-client"
   else
-    IMAGES="mayastor-dev mayastor-client"
+    IMAGES="bolt-dev bolt-client"
   fi
 fi
 
 for name in $IMAGES; do
-  image_basename="mayadata/${name}"
+  image_basename="datcore/${name}"
   image=$image_basename
   if [ -n "$REGISTRY" ]; then
     image="${REGISTRY}/${image}"
