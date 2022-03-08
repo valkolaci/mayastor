@@ -126,7 +126,7 @@ if [ -z "$IMAGES" ]; then
 fi
 
 for name in $IMAGES; do
-  image_basename="datcore/${name}"
+  image_basename="datacore/${name}"
   image=$image_basename
   if [ -n "$REGISTRY" ]; then
     image="${REGISTRY}/${image}"
