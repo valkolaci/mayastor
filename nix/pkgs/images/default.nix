@@ -58,17 +58,17 @@ let
 in
 {
   mayastor = dockerTools.buildImage (mayastorImageProps // {
-    name = "mayadata/mayastor";
+    name = "datacore/bolt";
     contents = [ busybox mayastor mctl ];
   });
 
   mayastor-dev = dockerTools.buildImage (mayastorImageProps // {
-    name = "mayadata/mayastor-dev";
+    name = "datacore/bolt-dev";
     contents = [ busybox mayastor-dev ];
   });
 
   mayastor-client = dockerTools.buildImage (clientImageProps // {
-    name = "mayadata/mayastor-client";
+    name = "datacore/bolt-client";
     contents = [ busybox mayastor ];
     config = { Entrypoint = [ "/bin/mayastor-client" ]; };
   });

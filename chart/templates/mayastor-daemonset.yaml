@@ -31,7 +31,7 @@ spec:
         command: ['sh', '-c', 'until nc -vz core 50051; do echo "Waiting for registration service..."; sleep 1; done;']
       containers:
       - name: mayastor
-        image: {{ include "mayastorImagesPrefix" . }}mayadata/mayastor:{{ .Values.mayastorImagesTag }}
+        image: {{ include "mayastorImagesPrefix" . }}datacore/bolt:{{ .Values.mayastorImagesTag }}
         imagePullPolicy: {{ .Values.mayastorImagePullPolicy }}
         env:
         - name: RUST_LOG
